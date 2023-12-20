@@ -1,0 +1,449 @@
+<!-- practices.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>yog.AI - Practices</title>
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Description here">
+    <meta name="keywords" content="keywords,here">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> <!--Replace with your tailwind.css once created-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+    <script type="module" src="/script.js"></script>
+    <style>
+        /* Custom styles */
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #4f46e5;
+        }
+		/*mirrors video to match creators */
+		.mirror-video {
+		    transform: scaleX(-1);
+            border: 4px solid lightgray;
+            background-color: lightgray;
+		}
+
+		.flex-container {
+		    display: flex;
+		}
+		.camera, .example-pose {
+		    flex: 1;
+		    object-fit: cover;
+		    height: 300px; /* You can set this to the desired height */
+		}
+        .frame {
+            width: 360px;
+            height: 300px;
+            border: 2px solid black;
+            position: relative;
+        }
+
+        #video {
+            width: 360px;
+            height: 300px;
+            border: 4px solid lightgray;
+            background-color: lightgray;
+            object-fit: cover;
+        }
+
+        #buttonStart:hover,
+        #buttonStop:hover {
+            background-color: rgba(211, 211, 211, 0.7);;
+        }
+
+        #pose-description {
+            font-size: 12px; /* Adjust this value to your preferred font size */
+            font-family: "Arial", cursive, sans-serif;
+            line-height: 1.5;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-300 font-sans leading-normal tracking-normal">
+
+    <!-- Header -->
+    <div class="w-full m-0 p-0 bg-cover bg-bottom" title="Face Yoga Image - Unsplash - https://unsplash.com/photos/image-id" style="background-image:url('yoga_images/face-yoga-image.jpg'); height: 40vh; max-height: 400px;">
+        <div class="container max-w-3xl mx-auto pt-12 md:pt-12 text-center break-normal">
+            <!-- Title -->
+            <h1 class="text-gray-300 font-extrabold text-3xl md:text-5xl">yog.AI</h1>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">           
+        <div class="mx-0 sm:mx-6">                
+            <!-- Nav -->
+            <nav class="mt-0 w-full">
+                <div class="container mx-auto flex items-center">                        
+                    <div class="flex w-1/2 pl-4 text-sm">
+                        <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                            <li class="mr-2">
+                                <a class="nav-link inline-block text-gray-500 no-underline hover:text-gray-200 hover:underline py-2 px-2" href="/">Home</a>
+                            </li>
+                            <li class="mr-2">
+                                <a class="nav-link inline-block text-gray-500 no-underline hover:text-gray-200 hover:underline py-2 px-2" href="about.html">About</a>
+                            </li>
+                            <li class="mr-2">
+                                <a class="nav-link inline-block text-gray-500 no-underline hover:text-gray-200 hover:underline py-2 px-2" href="practices.html">Practices</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Practices Section -->
+            <div class="bg-gray-300 w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t" style="padding:0px">
+                <!-- Lead Card -->
+                <div class="flex flex-row h-full bg-white rounded overflow-hidden shadow-lg">
+                    <div class="w-1/4">
+                        <!-- Practice Tabs -->
+                        <div class="bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                            <div class="flex flex-col justify-between h-full">
+                                <ul class="flex flex-col p-4 space-y-2">
+                                    <h4 class="bg-gray-1000 hover:bg-red-1000 text-gray-500 font-bold px-2 rounded">Poses</h4>
+                                    <li>
+                                        <a id="tab-pose1" class="practice-tab cursor-pointer text-gray-500 font-medium px-4 py-3 hover:bg-gray-100" style="background-color: lightgray;">
+                                            <span class="font-medium">Brow Booster&#160&#160&#160</span>
+                                        </a>
+                                    </li>
+                                    <br><br>
+                                    <li>
+                                        <a id="tab-pose2" class="practice-tab cursor-pointer text-gray-500 font-medium px-4 py-3 hover:bg-gray-100">
+                                            <span class="font-medium">Tongue Tapper</span>
+                                        </a>
+                                    </li>
+                                    <br><br>
+                                    <li>
+                                        <a id="tab-pose3" class="practice-tab cursor-pointer text-gray-500 font-medium px-4 py-3 hover:bg-gray-100">
+                                            <span class="font-medium">Neck Lift&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160</span>
+                                        </a>
+                                    </li>
+                                    <br><br>
+                                    <li>
+                                        <a id="tab-pose4" class="practice-tab cursor-pointer text-gray-500 font-medium px-4 py-3 hover:bg-gray-100">
+                                            <span class="font-medium">Cheeky&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160</span>
+                                        </a>
+                                    </li>
+                                    <br><br>
+                                    <li>
+                                        <a id="tab-pose5" class="practice-tab cursor-pointer text-gray-500 font-medium px-4 py-3 hover:bg-gray-100">
+                                            <span class="font-medium">Smiley&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160</span>
+                                        </a>
+                                    </li>
+                                    <br><br>
+                                    <li>
+                                        <a id="tab-pose6" class="practice-tab cursor-pointer text-gray-500 font-medium px-4 py-3 hover:bg-gray-100">
+                                            <span class="font-medium">Pucker&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160</span>
+                                        </a>
+                                    </li>
+                                    <br><br>
+                                    <li>
+                                        <a id="tab-pose7" class="practice-tab cursor-pointer text-gray-500 font-medium px-4 py-3 hover:bg-gray-100">
+                                            <span class="font-medium">Pufferfish&#160&#160&#160&#160&#160&#160&#160&#160&#160</span>
+                                        </a>
+                                    </li>
+                                    <br><br>
+                                    <li>
+                                        <a id="tab-pose8" class="practice-tab cursor-pointer text-gray-500 font-medium px-4 py-3 hover:bg-gray-100">
+                                            <span class="font-medium">Jaw Dropper&#160&#160&#160</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-3/4 ml-4">
+                        <!-- Pose Content -->
+                        <div class="bg-white shadow-md rounded-lg p-4">
+                            <!-- Pose 1 Content -->
+                            <div>
+                                <!-- <h3 class="text-lg font-bold mb-2" id="pose-label">Pose 1</h3> -->
+                                <div class="bg-gray-1000 hover:bg-red-1000 text-gray-500 font-bold p1-4 rounded" id="resultsDisplay">Thank you for using yog.ai! &#128512; </div>
+								<div class="flex-container">
+                                    <!-- Column 1: Camera stream -->
+                                    <div class="flex-1 p-4">
+                                        <video id="video" class="camera w-full mirror-video" autoplay></video>
+                                    <div id="timer" style="bottom: 0px; right: 10px; font-size: 24px; color: white; background-color: rgba(0, 0, 0, 0.5);">Get Ready!</div>
+									</div>
+									
+                                    <!-- Column 2: Pose image -->
+                                    <div class="flex-1 p-4 pose-content" id="example-pose1">
+                                        <img alt="Pose 1" class="example-pose">
+                                    </div>
+                                    <div class="flex-1 p-4 pose-content hidden" id="example-pose2">
+                                        <img alt="Pose 2" class="example-pose">
+                                    </div>
+                                    <div class="flex-1 p-4 pose-content hidden" id="example-pose3">
+                                        <img alt="Pose 3" class="example-pose">
+                                    </div>
+                                    <div class="flex-1 p-4 pose-content hidden" id="example-pose4">
+                                        <img alt="Pose 4" class="example-pose">
+                                    </div>
+                                    <div class="flex-1 p-4 pose-content hidden" id="example-pose5">
+                                        <img alt="Pose 5" class="example-pose">
+                                    </div>
+                                    <div class="flex-1 p-4 pose-content hidden" id="example-pose6">
+                                        <img alt="Pose 6" class="example-pose">
+                                    </div>
+                                    <div class="flex-1 p-4 pose-content hidden" id="example-pose7">
+                                        <img alt="Pose 7" class="example-pose">
+                                    </div>
+                                    <div class="flex-1 p-4 pose-content hidden" id="example-pose8">
+                                        <img alt="Pose 8" class="example-pose">
+                                    </div>
+                                    <div class="flex-1 p-4" id="pose-description">
+                                        <ul>
+                                            <li style="font-size: 14px; font-weight: bold;">
+                                                Target Muscles: Forehead </li><br>
+                                            <li>1. Sit upright and facing forward, with shoulders back.</li><br>
+                                            <li>2. Place your hand on your forehead, with your top fingers against your hairline.</li><br>
+                                            <li>3. Using both hands, pull your forehead and eyebrows upwards.</li><br>
+                                            <li>4. Hold pose for 5 seconds.</li><br>
+                                            <li>5. Release.</li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    &#160&#160&#160&#160
+                                    <button id="buttonStart" class="bg-gray-1000 hover:bg-red-1000 text-gray-500 font-bold py-2 px-4 rounded" autoplay>Start</button>
+                                    <button id="buttonStop" class="bg-gray-1000 hover:bg-red-1000 text-gray-500 font-bold py-2 px-4 rounded" autoplay>Stop</button>
+                                </div>
+                                <!-- <div id="resultsDisplay">Thank you for using yog.ai! <p>&#128512;</p> </div> -->
+                                <!-- Add more content for Pose 1 as needed -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-500">   
+        <div class="container max-w-6xl mx-auto flex items-center px-2 py-8">
+            <div class="w-full mx-auto flex flex-wrap items-center">
+                <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
+                </div>
+                <div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
+                    <ul class="list-reset flex justify-center flex-1 md:flex-none items-center">
+                        <li class="mr-2">
+                            <a class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:underline py-2 px-2"
+                                href="team.html">Team</a>
+                        </li>
+                          <li class="mr-2">
+                            <a class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:underline py-2 px-2"
+                                href="privacy.html">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+		import { setPoseId } from "./script.js";
+
+        var poseId = "pose1";
+
+        // Add event listeners to the practice tabs
+        const practiceTabs = document.querySelectorAll('.practice-tab');
+        const poseContents = document.querySelectorAll('.pose-content');
+
+        practiceTabs.forEach((tab) => {
+            tab.addEventListener('click', (event) => {
+                // Remove active class from all tabs
+                practiceTabs.forEach((tab) => {
+                    tab.classList.remove('bg-white-500', 'text-white');
+                });
+
+                // Hide all pose contents
+                poseContents.forEach((content) => {
+                    content.classList.add('hidden');
+                });
+
+                // Change color of tab background to white
+                practiceTabs.forEach((tab) => {
+                    tab.style = 'hover:bg-gray-100';
+                });
+
+                // Reset default Color of Stop and Start
+                document.getElementById('buttonStart').style.color = 'gray'; 
+                document.getElementById('buttonStop').style.color = 'gray';
+
+                // Add active class to clicked tab
+                tab.classList.add('bg-white-500', 'text-white');
+
+                // Change color of tab background to light grey
+                tab.style = 'background-color: lightgray';
+
+                // Show corresponding pose content
+                poseId = tab.getAttribute('id').replace('tab-','');
+                console.log('setting poseId', poseId)
+                setPoseId(poseId);
+                const poseContent = document.getElementById("example-"+poseId);
+                poseContent.classList.remove('hidden');
+            
+                const poseLabel = document.getElementById("pose-label");
+                //poseLabel.innerHTML = poseId.replace('pose', 'Pose ');
+
+                var images = document.getElementsByClassName('example-pose');
+                for (var i = 0; i < images.length; i++) {
+                    var poseNumber = i + 1; // Get the pose number
+                    var gifNumber = Math.floor(Math.random() * 3) + 1; // Randomly select a gif number between 1 and 4
+                    images[i].src = 'pose_examples/Pose_' + poseNumber + '/example_' + gifNumber + '.gif';
+                }
+
+                var instructions;
+                switch (poseId) {
+                    case 'pose1':
+                        instructions = [
+                            '1. Sit upright and facing forward, with shoulders back.',
+                            '2. Place your hand on your forehead, with your top fingers against your hairline.',
+                            '3. Using both hands, pull your forehead and eyebrows upwards.',
+                            '4. Hold pose for 5 seconds.',
+                            '5. Release.'
+                        ];
+                        break;
+                    case 'pose2':
+                        instructions = [
+                            '1. Sit upright and facing forward, with shoulders back.',
+                            '2. Open mouth widely, keep rest of face relaxed.',
+                            '3. Stick tongue out as far as possible to the right side, resting the side of the tongue against the right corner of the mouth.',
+                            '4. Hold pose for 5 seconds.',
+                            '5. Release.',
+                            '6. Repeat on left side.'
+                        ];
+                        break;
+                    case 'pose3':
+                        instructions = [
+                            '1. Sit upright and facing forward, with shoulders back.',
+                            '2. Jut lower jaw out, bringing bottom teeth into alignment with top teeth.',
+                            '3. Lift head by 45 degree angle, keeping lower jaw jutted forward.',
+                            '4. Hold pose for 5 seconds.',
+                            '5. Release.',
+                        ];
+                        break;
+                    case 'pose4':
+                        instructions = [
+                            '1. Sit upright and facing forward, with shoulders back.',
+                            '2. Tuck top and bottom lips into your mouth.',
+                            '3. Lift cheeks (smile!)',
+                            '4. Open mouth, while keeping cheeks lifted and lips covering teeth.',
+                            '5. Hold pose for 5 seconds.',
+                            '6. Release.',
+                        ];
+                        break;
+                    case 'pose5':
+                        instructions = [
+                            '1. Sit upright and facing forward, with shoulders back.',
+                            '2. Tuck top and bottom lips into your mouth.',
+                            '3. Lift cheeks (smile!)',
+                            '4. Hold pose for 5 seconds.',
+                            '5. Release.',
+                        ];
+                        break;
+                    case 'pose6':
+                        instructions = [
+                            '1. Sit upright and facing forward, with shoulders back.',
+                            '2. Suck cheeks in.',
+                            '3. Pucker lips together.',
+                            '4. Hold pose for 5 seconds.',
+                            '5. Release.',
+                        ];
+                        break;
+                    case 'pose7':
+                        instructions = [
+                            '1. Sit upright and facing forward, with shoulders back.',
+                            '2. Take a deep breath, and inflate left cheek with air.',
+                            '3. Hold pose for 5 seconds.',
+                            '4. Repeat with right cheek.',
+                            '5. Release.',
+                        ];
+                        break;
+                    case 'pose8':
+                        instructions = [
+                            '1. Sit upright and facing forward, with shoulders back.',
+                            '2. Drop lower jaw down, keeping upper jaw in place and the rest of the face relaxed.',
+                            '3. Hold pose for 5 seconds.',
+                            '4. Release.',
+                        ];
+                        break;
+                }
+
+                var targetMuscles;
+                switch (poseId) {
+                    case 'pose1':
+                        targetMuscles = [
+                            'Target Muscles: Forehead'
+                        ];
+                        break;
+                    case 'pose2':
+                        targetMuscles = [
+                            'Target Muscles: Jaw, Neck'
+                        ];
+                        break;
+                    case 'pose3':
+                        targetMuscles = [
+                            'Target Muscles: Jaw, Neck'
+                        ];
+                        break;
+                    case 'pose4':
+                        targetMuscles = [
+                            'Target Muscles: Cheeks'
+                        ];
+                        break;
+                    case 'pose5':
+                        targetMuscles = [
+                            'Target Muscles: Cheeks'
+                        ];
+                        break;
+                    case 'pose6':
+                        targetMuscles = [
+                            'Target Muscles: Cheeks, Mouth'
+                        ];
+                        break;
+                    case 'pose7':
+                        targetMuscles = [
+                            'Target Muscles: Cheeks'
+                        ];
+                        break;
+                    case 'pose8':
+                        targetMuscles = [
+                            'Target Muscles: Jaw'
+                        ];
+                        break;
+                }
+
+                if (instructions) {
+                    document.getElementById('pose-description').innerHTML = '<ul><li style="font-size: 14px; font-weight: bold;">' + targetMuscles + '</li><br><li>' + instructions.join('</li><br><li>') + '</li></ul>';
+                }
+            });
+        });
+        
+        window.onload = function() {
+            var images = document.getElementsByClassName('example-pose');
+            for (var i = 0; i < images.length; i++) {
+                var poseNumber = i + 1; // Get the pose number
+                var gifNumber = Math.floor(Math.random() * 3) + 1; // Randomly select a gif number between 1 and 4
+                images[i].src = 'pose_examples/Pose_' + poseNumber + '/example_' + gifNumber + '.gif';
+            }
+        }
+
+        document.getElementById('buttonStart').addEventListener('click', function() {
+            this.style.color = 'green'; // Change text color to green when "Start" is clicked
+            document.getElementById('buttonStop').style.color = 'gray';
+        });
+
+        document.getElementById('buttonStop').addEventListener('click', function() {
+            document.getElementById('buttonStart').style.color = 'gray'; // Change "Start" text color back to gray
+            this.style.color = 'red'; // Change "Stop" text color to red
+        });
+        
+    </script>
+</body>
+</html>
